@@ -43,6 +43,8 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 							document.getElementById("time-display").innerHTML = total;
 						document.getElementById("onTaskDisplay").innerHTML = onTask;
 					document.getElementById("onTaskTotalDisplay").innerHTML = OnTaskSum; 
+					document.getElementById("offTaskDisplay").innerHTML = offTask;
+					document.getElementById("offTaskTotalDisplay").innerHTML = OffTaskSum;
 			};
 						window.onfocus = function() {
 							var  window_focus = 1;
@@ -60,15 +62,11 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 						for (var i = 0; i < pumpTimes.length; i++) {
 								total += pumpTimes[i] << 0;
 						}
-						var totalOffTask = 0;
-						for (var i = 0; i < pumpTimes.length; i++) {    
-								totalOffTask += offTask[i] << 0;
-						}
-						var OffTaskSum = (+totalOffTask + +totalOffTaskPrev)
-					document.getElementById("offTaskDisplay").innerHTML = offTask;
-					document.getElementById("offTaskTotalDisplay").innerHTML = OffTaskSum;
+						
 				};
 		 Qualtrics.SurveyEngine.addOnPageSubmit(function() {
+
+
 				 var ValidationCheck = document.getElementsByClassName('ValidationError');
 				 var i;
 				 for (i=0; i < ValidationCheck.length; i++) {
@@ -100,6 +98,15 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 						 document.getElementById("time-display").innerHTML = total;
 					 document.getElementById("onTaskDisplay").innerHTML = onTask;
 				 document.getElementById("onTaskTotalDisplay").innerHTML = OnTaskSum; 
+
+				 var totalOffTask = 0;
+				 for (var i = 0; i < pumpTimes.length; i++) {    
+				 		totalOffTask += offTask[i] << 0;
+				 }
+				 var OffTaskSum = (+totalOffTask + +totalOffTaskPrev)
+				 document.getElementById("offTaskDisplay").innerHTML = offTask;
+				 document.getElementById("offTaskTotalDisplay").innerHTML = OffTaskSum;
+
 									pumpTimes = pumpTimes.toString();
 									pumpTimes = pumpTimes.split(",@,")
 									perPagePT.push(" PAGE BREAK ");
@@ -111,7 +118,6 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 									var totalOffTask = parseFloat(document.getElementById("offTaskTotalDisplay").innerHTML);
 									onTask = onTask.toString();
 									onTask = onTask.split(",@,")
-									window.blur();
 									offTask = offTask.toString();
 									offTask = offTask.split(",@,")
 									var pageNo = document.getElementById("page-no-DIV").innerHTML;
