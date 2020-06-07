@@ -3,7 +3,7 @@ window.onload = function(){
 window.focus();
 }
 Qualtrics.SurveyEngine.addOnload(function()
-{  
+{
 var pumpTimes = [document.getElementById("timeArrayDIV").innerHTML];
 var perPagePT = [document.getElementById("perPagePTArrayDIV").innerHTML];
 var duration;
@@ -24,7 +24,7 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 					var timeTwo = Date.now();
 					// takes the interval between timeOne and timeTwo and converts to seconds (i.e., how long Ps spend in the task window). Steps below push this value to different arrays
 					var duration = (timeTwo - timeOne) / 1000;
-					document.getElementById("duration-span").innerHTML = duration;
+					document.getElementById("duration-div").innerHTML = duration;
 					// creates several arrays representing time spent on task and off task, time spent on and off task on that page, and just time spent on task
 					timeOne = Date.now();
 					pumpTimes.push(duration);
@@ -42,7 +42,7 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 						var OnTaskSum = (+totalOnTask + +totalOnTaskPrev)
 							document.getElementById("time-display").innerHTML = total;
 						document.getElementById("onTaskDisplay").innerHTML = onTask;
-					document.getElementById("onTaskTotalDisplay").innerHTML = OnTaskSum; 
+					document.getElementById("onTaskTotalDisplay").innerHTML = OnTaskSum;
 					document.getElementById("offTaskDisplay").innerHTML = offTask;
 					document.getElementById("offTaskTotalDisplay").innerHTML = OffTaskSum;
 			};
@@ -52,7 +52,7 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 					// performs equivalent series of steps, but measuring time spent off task instead
 						var timeThree = Date.now();
 						var duration = (0 - (timeThree - timeOne) / 1000);
-						document.getElementById("duration-span").innerHTML = duration;
+						document.getElementById("duration-div").innerHTML = duration;
 						pumpTimes.push(duration);
 						offTask.push(duration);
 						perPagePT.push(duration);
@@ -62,11 +62,8 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 						for (var i = 0; i < pumpTimes.length; i++) {
 								total += pumpTimes[i] << 0;
 						}
-						
 				};
 		 Qualtrics.SurveyEngine.addOnPageSubmit(function() {
-
-
 				 var ValidationCheck = document.getElementsByClassName('ValidationError');
 				 var i;
 				 for (i=0; i < ValidationCheck.length; i++) {
@@ -80,7 +77,7 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 				 if (PassValidation == 1) {
 				 var timeTwo = Date.now();
 				 var duration = (timeTwo - timeOne) / 1000;
-				 document.getElementById("duration-span").innerHTML = duration;
+				 document.getElementById("duration-div").innerHTML = duration;
 				 timeOne = Date.now();
 				 pumpTimes.push(duration);
 				 perPagePT.push(duration);
@@ -97,16 +94,14 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 					 var OnTaskSum = (+totalOnTask + +totalOnTaskPrev)
 						 document.getElementById("time-display").innerHTML = total;
 					 document.getElementById("onTaskDisplay").innerHTML = onTask;
-				 document.getElementById("onTaskTotalDisplay").innerHTML = OnTaskSum; 
-
+				 document.getElementById("onTaskTotalDisplay").innerHTML = OnTaskSum;
 				 var totalOffTask = 0;
-				 for (var i = 0; i < pumpTimes.length; i++) {    
+				 for (var i = 0; i < pumpTimes.length; i++) {
 				 		totalOffTask += offTask[i] << 0;
 				 }
 				 var OffTaskSum = (+totalOffTask + +totalOffTaskPrev)
 				 document.getElementById("offTaskDisplay").innerHTML = offTask;
 				 document.getElementById("offTaskTotalDisplay").innerHTML = OffTaskSum;
-
 									pumpTimes = pumpTimes.toString();
 									pumpTimes = pumpTimes.split(",@,")
 									perPagePT.push(" PAGE BREAK ");
@@ -134,33 +129,31 @@ var pageNo = parseFloat(document.getElementById("page-no-DIV").innerHTML);
 	var pageNo = document.getElementById("page-no-DIV").innerHTML;
 	pageNo --;
 };
-		}); 
+		});
 			});
-			
-			
 </script>
 
 <div class="QuestionBody UnhiddenQuestion" data-runtime-text="runtime.WontBeDisplayedText">
 
-		<center><br><br><span id="page-position">page: <span id="page-number">1</span>
+		<div><center><br><br><div id="page-position” style=“display:none"><div style="display:none" id="page-number">1</div></div>
 				<p></p>
-				</span>
-				<span>
+				</div>
+				<div>
 	<div id="top-div" style="display:none">
 
-<span><center><br><br>time: <span id="time-display"></span>
+<div><center><br><br>time: <div id="time-display"></div>
 				<p></p>
 
-				<br><br>time2: <span id="time-display2"></span></center>
-				<br><br>duration: <span id="duration-span"></span>
+				<br><br>time2: <div id="time-display2"></div></center>
+				<br><br>duration: <div id="duration-div"></div>
 
-		<br><br>offTask: <span id="offTaskDisplay"></span>
+		<br><br>offTask: <div id="offTaskDisplay"></div>
 
-		<br><br>onTask: <span id="onTaskDisplay"></span>
+		<br><br>onTask: <div id="onTaskDisplay"></div>
 
-		<br><br>offTaskTotal: <span id="offTaskTotalDisplay"></span>
-		<br><br>Window focus: <span id="window-focus"></span>
+		<br><br>offTaskTotal: <div id="offTaskTotalDisplay"></div>
+		<br><br>Window focus: <div id="window-focus"></div>
 
-		<br><br>onTaskTotal: <span id="onTaskTotalDisplay"></span></span>
-		</span>
+		<br><br>onTaskTotal: <div id="onTaskTotalDisplay"></div></div>
+		</div>
 </div>
